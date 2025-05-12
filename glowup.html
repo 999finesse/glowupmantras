@@ -19,12 +19,12 @@
         }
 
         .card-container {
-            padding: 1.5rem; /* Reduced padding */
-            height: auto; /* Set to auto for dynamic content size */
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding: 1.5rem;
+            height: 100%; /* Make sure the container uses full height available */
+            overflow: hidden;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
@@ -50,6 +50,7 @@
             margin: 0 auto;
             text-align: left;
             position: relative;
+            flex-grow: 1; /* Allow the content to grow and fill available space */
         }
 
         .main-text {
@@ -109,7 +110,7 @@
         @media (max-width: 480px) {
             .card-container {
                 padding: 1rem;
-                height: auto;
+                height: auto; /* Adjust to dynamic content */
             }
 
             .main-text {
@@ -134,7 +135,6 @@
             <p class="implementation" id="card-implementation"></p>
         </div>
     </div>
-
     <script>
         const cards = [
             {
