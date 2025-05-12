@@ -19,8 +19,8 @@
         }
 
         .card-container {
-            padding: 2rem;
-            height: 180px;
+            padding: 1.5rem; /* Reduced padding */
+            height: auto; /* Set to auto for dynamic content size */
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -258,57 +258,26 @@
                 implementation: "Invest in yourself, because you’re the only person who will always be there for you."
             },
             {
-                main: "Pretty girls budget too. Soft life, not broke life.",
-                implementation: "Luxury and self-care don’t have to come at a high price. Embrace the soft life while making smart choices."
+                main: "Wake up with purpose. Go to bed with pride.",
+                implementation: "Live each day with intention. Your daily actions should reflect the love you have for yourself."
             },
             {
-                main: "Going out alone? Yes. Being boring? Never.",
-                implementation: "Solo adventures are anything but boring. Make your own fun, no matter where you are."
+                main: "Create a life you don’t need a vacation from.",
+                implementation: "When you design a life that excites you, you won’t need an escape. You’ll be living your dream every day."
             },
             {
-                main: "It’s called ‘romanticizing life,’ not ‘waiting for someone to take me out.’",
-                implementation: "Create the life you love without needing anyone else to validate it. Romanticize your own existence."
-            },
-            {
-                main: "Alexa, play ‘She’s in her solo soft life era.’",
-                implementation: "Embrace your soft life and enjoy the peace that comes with it. It’s your time to shine."
-            },
-            {
-                main: "Solo date loading… but make it aesthetic.",
-                implementation: "Your solo adventures deserve to be filled with beauty and joy. It’s all about creating the perfect experience for yourself."
+                main: "Life’s too short to wait for a perfect moment.",
+                implementation: "Make your own perfect moments. Stop waiting for the right time to live your best life."
             }
         ];
 
-        let currentCardIndex = -1;
-
         function setRandomCard() {
-            let newIndex;
-            do {
-                newIndex = Math.floor(Math.random() * cards.length);
-            } while (newIndex === currentCardIndex && cards.length > 1);
-
-            currentCardIndex = newIndex;
-            const card = cards[currentCardIndex];
-
-            const container = document.querySelector('.card-content');
-            container.innerHTML = '';
-
-            const main = document.createElement('p');
-            main.className = 'main-text';
-            if (card.main.startsWith('"')) {
-                main.classList.add('quote');
-            }
-            main.textContent = card.main;
-
-            const implementation = document.createElement('p');
-            implementation.className = 'implementation';
-            implementation.textContent = card.implementation;
-
-            container.appendChild(main);
-            container.appendChild(implementation);
+            const randomCard = cards[Math.floor(Math.random() * cards.length)];
+            document.getElementById("card-main").textContent = randomCard.main;
+            document.getElementById("card-implementation").textContent = randomCard.implementation;
         }
 
-        // Set initial quote
+        // Initialize the first card
         setRandomCard();
     </script>
 </body>
