@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow-Up Mantras</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            background: #fafafa;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .card-container {
+            padding: 2rem;
+            height: 180px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .card-container::after {
+            content: "↻";
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: #888;
+        }
+
+        .card-container:hover::after {
+            opacity: 0.5;
+        }
+
+        .card-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            position: relative;
+        }
+
+        .main-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 0 0.8rem 0;
+            color: #2c2c2c;
+            letter-spacing: 0.01em;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.6s ease forwards;
+            line-height: 1.4;
+        }
+
+        .implementation {
+            font-family: 'Inter', sans-serif;
+            color: #555;
+            font-size: 0.95rem;
+            font-weight: 300;
+            margin: 0;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.6s ease 0.1s forwards;
+            line-height: 1.4;
+        }
+
+        .source {
+            font-family: 'Inter', sans-serif;
+            color: #888;
+            font-size: 0.8rem;
+            font-weight: 400;
+            margin: 0.8rem 0 0 0;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.6s ease 0.2s forwards;
+        }
+
+        .quote {
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-container:active {
+            background: #f5f5f5;
+        }
+
+        /* === MOBILE OPTIMIZATION START === */
+        @media (max-width: 480px) {
+            .card-container {
+                padding: 1rem;
+                height: auto;
+            }
+
+            .main-text {
+                font-size: 1.2rem;
+            }
+
+            .implementation {
+                font-size: 0.85rem;
+            }
+
+            .source {
+                font-size: 0.75rem;
+            }
+        }
+        /* === MOBILE OPTIMIZATION END === */
+    </style>
+</head>
+<body>
+    <div class="card-container" onclick="setRandomCard()" title="Click for another insight">
+        <div class="card-content">
+            <p class="main-text" id="card-main"></p>
+            <p class="implementation" id="card-implementation"></p>
+        </div>
+    </div>
+
+    <script>
+        const cards = [
+            {
+                main: "She designed a life she loved.",
+                implementation: "Create a life that aligns with your values and desires. Design your days intentionally to foster the life you dream of."
+            },
+            {
+                main: "Romanticize your life. You deserve to be the main character.",
+                implementation: "See the beauty in everyday moments. Make your daily life feel special and like you’re living in a movie."
+            },
+            {
+                main: "Softness is strength.",
+                implementation: "Embrace your soft side. Strength doesn’t always have to be loud or tough; sometimes, it’s gentle and calm."
+            },
+            {
+                main: "Delicate, not weak.",
+                implementation: "Being delicate means you’re mindful, careful, and graceful. It’s not weakness, but a true form of inner strength."
+            },
+            {
+                main: "You’re allowed to be both a masterpiece and a work in progress.",
+                implementation: "Accept yourself as you are while working toward your potential. Growth and self-love can coexist."
+            },
+            {
+                main: "Give yourself the love you so freely give to others.",
+                implementation: "Treat yourself with the same kindness, compassion, and care that you offer others every day."
+            },
+            {
+                main: "Be the kind of woman who makes other girls step up their soft life game.",
+                implementation: "Inspire others by living authentically and gracefully. Your energy can elevate the women around you."
+            },
+            {
+                main: "Go where you feel most alive.",
+                implementation: "Seek the places and moments that make you feel like your best self. Life’s too short not to chase what sparks joy."
+            },
+            {
+                main: "Alone doesn’t mean lonely.",
+                implementation: "Being alone is a chance to rediscover yourself, to learn, to grow, and to enjoy your own company."
+            },
+            {
+                main: "Collect moments, not people.",
+                implementation: "Experiences shape us. Fill your life with memories and stories, not just names on a list."
+            },
+            {
+                main: "Take yourself out. Get dressed up. Order dessert. Make it an event.",
+                implementation: "Your life is worth celebrating, and sometimes the best company is your own."
+            },
+            {
+                main: "Exploring the world, one solo date at a time.",
+                implementation: "Embrace the freedom of solo adventures. Every date with yourself is a new discovery."
+            },
+            {
+                main: "Be your own soulmate first.",
+                implementation: "Before seeking love from others, fall in love with who you are. Be your own first priority."
+            },
+            {
+                main: "You’re never really alone when your vibe is right.",
+                implementation: "The right energy brings the right people, but first, make sure your vibe is centered on you."
+            },
+            {
+                main: "Your soft girl era isn’t a phase. It’s a homecoming.",
+                implementation: "This gentle, nurturing, and kind version of yourself is your truest form. It’s not a trend, it’s your essence."
+            },
+            {
+                main: "Today is the perfect day to treat yourself like a queen.",
+                implementation: "You deserve to feel valued and loved every single day. Treat yourself with the respect and kindness you deserve."
+            },
+            {
+                main: "Aesthetic isn’t just how things look. It’s how they feel.",
+                implementation: "True beauty is in the experience, the emotions, and the vibes you create, not just in what’s seen on the surface."
+            },
+            {
+                main: "Pour beauty into the ordinary.",
+                implementation: "Find the beauty in everyday moments. It’s not about the big things, but the way you appreciate the little ones."
+            },
+            {
+                main: "Light a candle. Wear perfume. Even if no one’s around.",
+                implementation: "You don’t need a reason to feel beautiful. Do things that make you feel good for no one but yourself."
+            },
+            {
+                main: "Unapologetic softness is revolutionary.",
+                implementation: "There’s power in softness. Being unapologetically gentle is a form of strength."
+            },
+            {
+                main: "You’re magic. Start acting like it.",
+                implementation: "You have the power to shape your reality. Embrace your inner magic and let it guide you."
+            },
+            {
+                main: "Confidence isn’t loud, it’s quiet self-assurance.",
+                implementation: "True confidence is not about shouting the loudest; it’s about standing firm in your own skin."
+            },
+            {
+                main: "Your energy introduces you before you even speak.",
+                implementation: "The way you carry yourself speaks volumes. Own your energy and let it do the talking."
+            },
+            {
+                main: "She’s glowing because she’s growing.",
+                implementation: "Glow comes from within. The more you evolve, the more radiant you become."
+            },
+            {
+                main: "Hot girls plan solo dates.",
+                implementation: "Self-love means treating yourself to dates and adventures, no one else is required."
+            },
+            {
+                main: "Yes, I’m dating myself. We’re very happy together.",
+                implementation: "Self-love is the best kind of love. You deserve to nurture yourself first and foremost."
+            },
+            {
+                main: "Catch flights, feelings? Nah, just vibes.",
+                implementation: "Life’s about the vibe, not about waiting for anything. Be the vibe you need."
+            },
+            {
+                main: "Outfit: cute. Mood: better.",
+                implementation: "When you feel good, it shows. Dress for the confidence you want to feel inside."
+            },
+            {
+                main: "Main character energy—no side roles here.",
+                implementation: "You are the star of your story. Don’t settle for being an extra in anyone else’s."
+            },
+            {
+                main: "Spoiling myself because I’m the only constant.",
+                implementation: "Invest in yourself, because you’re the only person who will always be there for you."
+            },
+            {
+                main: "Pretty girls budget too. Soft life, not broke life.",
+                implementation: "Luxury and self-care don’t have to come at a high price. Embrace the soft life while making smart choices."
+            },
+            {
+                main: "Going out alone? Yes. Being boring? Never.",
+                implementation: "Solo adventures are anything but boring. Make your own fun, no matter where you are."
+            },
+            {
+                main: "It’s called ‘romanticizing life,’ not ‘waiting for someone to take me out.’",
+                implementation: "Create the life you love without needing anyone else to validate it. Romanticize your own existence."
+            },
+            {
+                main: "Alexa, play ‘She’s in her solo soft life era.’",
+                implementation: "Embrace your soft life and enjoy the peace that comes with it. It’s your time to shine."
+            },
+            {
+                main: "Solo date loading… but make it aesthetic.",
+                implementation: "Your solo adventures deserve to be filled with beauty and joy. It’s all about creating the perfect experience for yourself."
+            }
+        ];
+
+        let currentCardIndex = -1;
+
+        function setRandomCard() {
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * cards.length);
+            } while (newIndex === currentCardIndex && cards.length > 1);
+
+            currentCardIndex = newIndex;
+            const card = cards[currentCardIndex];
+
+            const container = document.querySelector('.card-content');
+            container.innerHTML = '';
+
+            const main = document.createElement('p');
+            main.className = 'main-text';
+            if (card.main.startsWith('"')) {
+                main.classList.add('quote');
+            }
+            main.textContent = card.main;
+
+            const implementation = document.createElement('p');
+            implementation.className = 'implementation';
+            implementation.textContent = card.implementation;
+
+            container.appendChild(main);
+            container.appendChild(implementation);
+        }
+
+        // Set initial quote
+        setRandomCard();
+    </script>
+</body>
+</html>
